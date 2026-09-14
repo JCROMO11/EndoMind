@@ -1,0 +1,22 @@
+# Entornos y secretos
+.env
+*.env.local
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Datos pesados / corpus (el PDF no se commitea, solo referencias)
+data/corpus/*.pdf
+chunks/*.json
+embeddings/*.npy
+
+# Docker
+*.log
+
+# Sistema operativo / editor
+.DS_Store
+.vscode/
