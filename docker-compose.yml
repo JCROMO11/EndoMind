@@ -4,11 +4,11 @@ services:
     container_name: endomind_db
     restart: unless-stopped
     environment:
-      PSQL_USER: endominduser
-      PSQL_PW: devendomind
-      PSQL_DB: endomind
+      POSTGRES_USER: endomind
+      POSTGRES_PASSWORD: devpassword
+      POSTGRES_DB: endomind
     ports:
-      - "5430:5430"
+      - "5433:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
 
