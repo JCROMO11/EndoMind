@@ -1,0 +1,11 @@
+[project]
+name = "endomind"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "psycopg2-binary>=2.9.13",
+    "pydantic-settings>=2.15.0",
+    "pymupdf>=1.28.2",
+    "sqlalchemy>=2.0.54",
+]
