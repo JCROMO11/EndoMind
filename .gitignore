@@ -20,3 +20,5 @@ embeddings/*.npy
 # Sistema operativo / editor
 .DS_Store
 .vscode/
+data/raw
+data/
