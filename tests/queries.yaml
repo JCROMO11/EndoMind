@@ -1,0 +1,181 @@
+queries:
+  - id: t2d-01
+    query: "¿Qué es la diabetes tipo 2 y cómo se origina?"
+    difficulty: easy
+    relevant:
+      - {chunk_index: 9582, chapter_num: 17, page: 626, section: "DIABETES TIPO 2"}
+      - {chunk_index: 9583, chapter_num: 17, page: 626, section: "DIABETES TIPO 2"}
+      - {chunk_index: 9588, chapter_num: 17, page: 626, section: "DIABETES TIPO 2"}
+      - {chunk_index: 9590, chapter_num: 17, page: 626, section: "DIABETES TIPO 2"}
+      - {chunk_index: 9626, chapter_num: 17, page: 628, section: "DIABETES TIPO 2"}
+  - id: t2d-02
+    query: "¿Cuáles son los factores de riesgo para desarrollar diabetes tipo 2?"
+    difficulty: easy
+    relevant:
+      - {chunk_index: 9589, chapter_num: 17, page: 626, section: "DIABETES TIPO 2"}
+      - {chunk_index: 9593, chapter_num: 17, page: 626, section: "DIABETES TIPO 2"}
+      - {chunk_index: 9651, chapter_num: 17, page: 629, section: "DIABETES TIPO 2"}
+      - {chunk_index: 9653, chapter_num: 17, page: 629, section: "DIABETES TIPO 2"}
+      - {chunk_index: 9660, chapter_num: 17, page: 629, section: "DIABETES TIPO 2"}
+  - id: t2d-03
+    query: "¿Por qué orino mucho, tengo mucha sed y estoy bajando de peso?"
+    difficulty: hard
+    relevant:
+      - {chunk_index: 9809, chapter_num: 17, page: 636, section: "Diabetes tipo 1"}
+      - {chunk_index: 9810, chapter_num: 17, page: 636, section: "Diabetes tipo 1"}
+      - {chunk_index: 9811, chapter_num: 17, page: 636, section: "Diabetes tipo 1"}
+      - {chunk_index: 9824, chapter_num: 17, page: 637, section: "Diabetes tipo 2"}
+      - {chunk_index: 9825, chapter_num: 17, page: 637, section: "Diabetes tipo 2"}
+  - id: t2d-04
+    query: "¿Con qué valores de glucosa en ayunas o de HbA1c se diagnostica la diabetes?"
+    difficulty: easy
+    relevant:
+      - {chunk_index: 9870, chapter_num: 17, page: 639, section: "Pruebas de glucosa en sangre"}
+      - {chunk_index: 9933, chapter_num: 17, page: 642, section: "Ensayos de hemoglobina glicosilada"}
+      - {chunk_index: 9934, chapter_num: 17, page: 642, section: "Ensayos de hemoglobina glicosilada"}
+      - {chunk_index: 9936, chapter_num: 17, page: 642, section: "Ensayos de hemoglobina glicosilada"}
+      - {chunk_index: 9950, chapter_num: 17, page: 642, section: "Prueba oral de tolerancia a la glucosa"}
+  - id: t2d-05
+    query: "¿Qué es la hemoglobina glicosilada (HbA1c) y qué indica?"
+    difficulty: easy
+    relevant:
+      - {chunk_index: 9912, chapter_num: 17, page: 641, section: "Ensayos de hemoglobina glicosilada"}
+      - {chunk_index: 9913, chapter_num: 17, page: 641, section: "Ensayos de hemoglobina glicosilada"}
+      - {chunk_index: 9915, chapter_num: 17, page: 641, section: "Ensayos de hemoglobina glicosilada"}
+      - {chunk_index: 9917, chapter_num: 17, page: 641, section: "Ensayos de hemoglobina glicosilada"}
+      - {chunk_index: 9918, chapter_num: 17, page: 641, section: "Ensayos de hemoglobina glicosilada"}
+  - id: t2d-06
+    query: "¿Cómo se mide la glucosa en casa y qué es el monitoreo continuo de glucosa?"
+    difficulty: easy
+    relevant:
+      - {chunk_index: 9871, chapter_num: 17, page: 639, section: "Pruebas de glucosa en sangre"}
+      - {chunk_index: 9878, chapter_num: 17, page: 640, section: "Pruebas de glucosa en sangre"}
+      - {chunk_index: 9889, chapter_num: 17, page: 640, section: "Sistemas continuos de monitoreo de glucosa"}
+      - {chunk_index: 9890, chapter_num: 17, page: 640, section: "Sistemas continuos de monitoreo de glucosa"}
+      - {chunk_index: 9898, chapter_num: 17, page: 640, section: "Sistemas continuos de monitoreo de glucosa"}
+  - id: t2d-07
+    query: "¿Cuál es la meta de glucosa y de HbA1c que debe lograr un paciente con diabetes?"
+    difficulty: hard
+    relevant:
+      - {chunk_index: 10382, chapter_num: 17, page: 662, section: "Terapia específica"}
+      - {chunk_index: 10383, chapter_num: 17, page: 662, section: "Terapia específica"}
+      - {chunk_index: 10384, chapter_num: 17, page: 662, section: "Terapia específica"}
+      - {chunk_index: 10011, chapter_num: 17, page: 645, section: "Ensayos clínicos en diabetes"}
+      - {chunk_index: 10025, chapter_num: 17, page: 645, section: "Ensayos clínicos en diabetes"}
+  - id: t2d-08
+    query: "¿Qué debo comer si tengo diabetes?"
+    difficulty: easy
+    relevant:
+      - {chunk_index: 10037, chapter_num: 17, page: 646, section: "Dieta"}
+      - {chunk_index: 10038, chapter_num: 17, page: 646, section: "Dieta"}
+      - {chunk_index: 10039, chapter_num: 17, page: 646, section: "Dieta"}
+      - {chunk_index: 10040, chapter_num: 17, page: 646, section: "Dieta"}
+      - {chunk_index: 10049, chapter_num: 17, page: 646, section: "Consideraciones especiales en el control dietético"}
+  - id: t2d-09
+    query: "¿La pérdida de peso y el ejercicio ayudan a controlar la diabetes tipo 2?"
+    difficulty: hard
+    relevant:
+      - {chunk_index: 10040, chapter_num: 17, page: 646, section: "Dieta"}
+      - {chunk_index: 10437, chapter_num: 17, page: 665, section: "Terapia específica"}
+      - {chunk_index: 10438, chapter_num: 17, page: 665, section: "Terapia específica"}
+      - {chunk_index: 10432, chapter_num: 17, page: 665, section: "Terapia específica"}
+      - {chunk_index: 10433, chapter_num: 17, page: 665, section: "Terapia específica"}
+  - id: t2d-10
+    query: "¿Cómo funciona la metformina y cuáles son sus efectos secundarios?"
+    difficulty: easy
+    relevant:
+      - {chunk_index: 10112, chapter_num: 17, page: 650, section: "Metformina"}
+      - {chunk_index: 10113, chapter_num: 17, page: 650, section: "Metformina"}
+      - {chunk_index: 10117, chapter_num: 17, page: 650, section: "Metformina"}
+      - {chunk_index: 10118, chapter_num: 17, page: 651, section: "Metformina"}
+      - {chunk_index: 10120, chapter_num: 17, page: 651, section: "Metformina"}
+  - id: t2d-11
+    query: "¿Cómo actúan las sulfonilureas y qué riesgos tienen?"
+    difficulty: easy
+    relevant:
+      - {chunk_index: 10068, chapter_num: 17, page: 647, section: "Sulfonilureas"}
+      - {chunk_index: 10069, chapter_num: 17, page: 647, section: "Sulfonilureas"}
+      - {chunk_index: 10077, chapter_num: 17, page: 647, section: "Sulfonilureas"}
+      - {chunk_index: 10083, chapter_num: 17, page: 647, section: "Sulfonilureas"}
+      - {chunk_index: 10093, chapter_num: 17, page: 649, section: "Sulfonilureas"}
+  - id: t2d-12
+    query: "¿Cómo funcionan los inhibidores de SGLT2 y qué efectos secundarios tienen?"
+    difficulty: easy
+    relevant:
+      - {chunk_index: 10222, chapter_num: 17, page: 655, section: "5. INHIBIDORES DE LOS COTRANSPORTADORES 2 DE SODIO-GLUCOSA"}
+      - {chunk_index: 10223, chapter_num: 17, page: 655, section: "5. INHIBIDORES DE LOS COTRANSPORTADORES 2 DE SODIO-GLUCOSA"}
+      - {chunk_index: 10231, chapter_num: 17, page: 655, section: "5. INHIBIDORES DE LOS COTRANSPORTADORES 2 DE SODIO-GLUCOSA"}
+      - {chunk_index: 10232, chapter_num: 17, page: 655, section: "5. INHIBIDORES DE LOS COTRANSPORTADORES 2 DE SODIO-GLUCOSA"}
+      - {chunk_index: 10234, chapter_num: 17, page: 655, section: "5. INHIBIDORES DE LOS COTRANSPORTADORES 2 DE SODIO-GLUCOSA"}
+  - id: t2d-13
+    query: "¿Qué son los agonistas del receptor GLP-1 y cómo se administran?"
+    difficulty: easy
+    relevant:
+      - {chunk_index: 10175, chapter_num: 17, page: 653, section: "Agonistas del receptor GLP-1"}
+      - {chunk_index: 10176, chapter_num: 17, page: 653, section: "Agonistas del receptor GLP-1"}
+      - {chunk_index: 10177, chapter_num: 17, page: 653, section: "Agonistas del receptor GLP-1"}
+      - {chunk_index: 10178, chapter_num: 17, page: 653, section: "Agonistas del receptor GLP-1"}
+      - {chunk_index: 10185, chapter_num: 17, page: 653, section: "Agonistas del receptor GLP-1"}
+  - id: t2d-14
+    query: "Si las pastillas ya no bastan, ¿cuándo y cómo se empieza la insulina en la diabetes tipo 2?"
+    difficulty: hard
+    relevant:
+      - {chunk_index: 10450, chapter_num: 17, page: 666, section: "Terapia específica"}
+      - {chunk_index: 10453, chapter_num: 17, page: 666, section: "Terapia específica"}
+      - {chunk_index: 10454, chapter_num: 17, page: 666, section: "Terapia específica"}
+      - {chunk_index: 10455, chapter_num: 17, page: 666, section: "Terapia específica"}
+      - {chunk_index: 10458, chapter_num: 17, page: 666, section: "Terapia específica"}
+  - id: t2d-15
+    query: "¿Cuáles son los síntomas de la hipoglucemia y cómo se trata?"
+    difficulty: easy
+    relevant:
+      - {chunk_index: 10475, chapter_num: 17, page: 667, section: "Hipoglucemia"}
+      - {chunk_index: 10476, chapter_num: 17, page: 667, section: "Hipoglucemia"}
+      - {chunk_index: 10493, chapter_num: 17, page: 668, section: "Hipoglucemia"}
+      - {chunk_index: 10494, chapter_num: 17, page: 668, section: "Hipoglucemia"}
+      - {chunk_index: 10495, chapter_num: 17, page: 668, section: "Hipoglucemia"}
+  - id: t2d-16
+    query: "¿Qué es la cetoacidosis diabética y cuáles son sus síntomas?"
+    difficulty: easy
+    relevant:
+      - {chunk_index: 10512, chapter_num: 17, page: 669, section: "1. CETOACIDOSIS DIABÉTICA"}
+      - {chunk_index: 10515, chapter_num: 17, page: 669, section: "Patogénesis"}
+      - {chunk_index: 10525, chapter_num: 17, page: 670, section: "Características clínicas"}
+      - {chunk_index: 10526, chapter_num: 17, page: 670, section: "Características clínicas"}
+      - {chunk_index: 10527, chapter_num: 17, page: 670, section: "Características clínicas"}
+  - id: t2d-17
+    query: "¿Cómo daña la diabetes los ojos? ¿Qué es la retinopatía diabética?"
+    difficulty: easy
+    relevant:
+      - {chunk_index: 10713, chapter_num: 17, page: 678, section: "Retinopatía diabética"}
+      - {chunk_index: 10714, chapter_num: 17, page: 678, section: "Retinopatía diabética"}
+      - {chunk_index: 10715, chapter_num: 17, page: 678, section: "Retinopatía diabética"}
+      - {chunk_index: 10717, chapter_num: 17, page: 678, section: "Retinopatía diabética"}
+      - {chunk_index: 10721, chapter_num: 17, page: 678, section: "Retinopatía diabética"}
+  - id: t2d-18
+    query: "¿Cómo afecta la diabetes a los riñones y cómo se detecta el daño?"
+    difficulty: easy
+    relevant:
+      - {chunk_index: 10730, chapter_num: 17, page: 679, section: "Nefropatía diabética"}
+      - {chunk_index: 10734, chapter_num: 17, page: 680, section: "Nefropatía diabética"}
+      - {chunk_index: 10737, chapter_num: 17, page: 680, section: "Nefropatía diabética"}
+      - {chunk_index: 10740, chapter_num: 17, page: 680, section: "Nefropatía diabética"}
+      - {chunk_index: 10743, chapter_num: 17, page: 680, section: "Nefropatía diabética"}
+  - id: t2d-19
+    query: "¿Qué es la neuropatía diabética y cómo se cuidan los pies?"
+    difficulty: easy
+    relevant:
+      - {chunk_index: 10761, chapter_num: 17, page: 680, section: "3. COMPLICACIONES NEUROLÓGICAS (NEUROPATÍA DIABÉTICA)"}
+      - {chunk_index: 10764, chapter_num: 17, page: 681, section: "Neuropatía periférica"}
+      - {chunk_index: 10766, chapter_num: 17, page: 681, section: "Neuropatía periférica"}
+      - {chunk_index: 10769, chapter_num: 17, page: 681, section: "Neuropatía periférica"}
+      - {chunk_index: 10776, chapter_num: 17, page: 681, section: "Neuropatía periférica"}
+  - id: t2d-20
+    query: "¿Qué medicamentos bajan la glucosa sin causar hipoglucemia?"
+    difficulty: hard
+    relevant:
+      - {chunk_index: 10439, chapter_num: 17, page: 665, section: "Terapia específica"}
+      - {chunk_index: 10442, chapter_num: 17, page: 666, section: "Terapia específica"}
+      - {chunk_index: 10446, chapter_num: 17, page: 666, section: "Terapia específica"}
+      - {chunk_index: 10447, chapter_num: 17, page: 666, section: "Terapia específica"}
+      - {chunk_index: 10449, chapter_num: 17, page: 666, section: "Terapia específica"}
