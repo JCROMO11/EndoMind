@@ -20,3 +20,6 @@ class DBSettings(BaseSettings):
     @property
     def database_url_gen(self) -> str:
          return f'postgresql://{self.postgres_user}:{self.postgres_password}@{self.postgres_host}:{self.postgres_port}/{self.postgres_db}'
+
+db_settings = DBSettings()
+ai_settings = AISettings()
