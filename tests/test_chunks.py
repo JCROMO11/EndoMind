@@ -94,3 +94,54 @@ def test_las_secciones_no_se_mezclan_y_el_indice_es_global():
     assert [c["chunk_index"] for c in todos] == list(range(len(todos)))
     assert all(c["section"] == "A" for c in todos[:len(a)]) and all(c["section"] == "B" for c in todos[len(a):])
     assert all("Aaa" not in c["text"] for c in todos[len(a):])
+
+
+# --- encabezado --------------------------------------------------------------
+from ingest.chunk import chunk_all, embed_text, make_header, variant_paths  # noqa: E402
+
+
+def test_header_quita_numero_y_mayusculas_y_une_con_flecha():
+    assert make_header("17. DIABETES MELLITUS", "Metformina", words, 24) == "Diabetes mellitus › Metformina"
+
+
+def test_header_no_repite_cuando_seccion_y_capitulo_son_iguales():
+    assert make_header("5. TIROIDES", "TIROIDES", words, 24) == "Tiroides"
+
+
+def test_header_respeta_el_tope_recortando_la_seccion():
+    h = make_header("17. DIABETES", "uno dos tres cuatro cinco seis siete", words, 5)
+    assert words(h.replace("›", "")) <= 5 and h.startswith("Diabetes")
+
+
+def test_embed_text_solo_antepone_si_hay_encabezado():
+    assert embed_text({"text": "abc"}) == "abc"
+    assert embed_text({"text": "abc", "header": ""}) == "abc"
+    assert embed_text({"text": "abc", "header": "Cap › Sec"}) == "Cap › Sec\nabc"
+
+
+def test_chunk_all_descuenta_el_encabezado_del_presupuesto():
+    texto = " ".join(f"p{i}." for i in range(300))                     # 300 oraciones de 1 palabra
+    sec = section([texto], "Metformina", 17)
+    sin = chunk_all([sec], header=False, max_tokens=100, measure=words)
+    con = chunk_all([sec], header=True, max_tokens=100, measure=words)
+    assert all(c["n_tokens"] <= 100 for c in sin + con)                  # n_tokens ya incluye el encabezado
+    assert max(c["n_tokens"] for c in con) <= 100
+    assert all(c["header"] and embed_text(c).startswith(c["header"]) for c in con)
+    assert all(c["header"] == "" for c in sin)
+    assert len(con) >= len(sin)                                          # menos cuerpo por chunk -> no menos chunks
+    assert [c["chunk_index"] for c in con] == list(range(len(con)))
+
+
+def test_variant_paths():
+    base = variant_paths()
+    h = variant_paths("header")
+    assert base[0].name == "greenspan_chunks.json" and base[1].name == "greenspan_embs.npz"
+    assert h[0].name == "greenspan_chunks_header.json" and h[1].name == "greenspan_embs_header.npz"
+
+
+def test_report_cuenta_contra_el_presupuesto_de_la_variante():
+    from ingest.chunk import report
+    sec = section(["uno dos tres."])
+    chunks = [{"chunk_index": 0, "chapter_num": 1, "section": "S", "printed_page_start": 5,
+               "printed_page_end": 5, "n_tokens": 110, "text": "uno dos tres."}]
+    assert "Chunks > 100 (presupuesto)    : 1" in report(chunks, [sec], max_tokens=100)

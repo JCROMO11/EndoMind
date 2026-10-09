@@ -118,3 +118,40 @@ def test_main_de_punta_a_punta_con_modelo_falso(tmp_path, monkeypatch, capsys):
     assert 'text' not in json.dumps(detail['queries'])                            # el detalle no lleva texto del libro
     log = (tmp_path / 'docs' / 'eval_log.md').read_text(encoding='utf-8')
     assert log.count('\n| 20') == 1 and 'baseline' in log
+
+
+def test_sin_strict_las_filas_y_el_resumen_solo_traen_lax():
+    embs, ids, meta = make_world()
+    rows = ev.evaluate([query('q', [2])], embs[[3]], embs, ids, meta, strict=False)
+    assert 'strict@3' not in rows[0] and rows[0]['lax@3'] is True
+    total, _ = ev.summarize_all(rows)
+    assert 'strict@3' not in total and total['lax@5'] == 1.0
+    assert 'n/a' in ev.format_table(total, {})
+
+
+def test_main_con_variante_usa_sus_archivos_y_omite_strict(tmp_path, monkeypatch, capsys):
+    embs, ids, meta = make_world()
+    chunks = [{'chunk_index': i, 'chapter_num': m['chapter_num'], 'section': m['section'],
+               'printed_page_start': m['page_start'], 'printed_page_end': m['page_end']} for i, m in meta.items()]
+    (tmp_path / 'c_v.json').write_text(json.dumps(chunks), encoding='utf-8')
+    np.savez(tmp_path / 'e_v.npz', embeddings=embs, ids=ids, model_name='org/fake-model', normalized=True)
+    (tmp_path / 'queries.yaml').write_text(yaml.safe_dump({'queries': [
+        {'id': 'q1', 'query': 'uno', 'difficulty': 'easy',
+         'relevant': [{'chunk_index': 2, 'chapter_num': 17, 'section': 'Metformina', 'page': 650}]}]},
+        allow_unicode=True), encoding='utf-8')
+
+    class FakeModel:
+        def __init__(self, name): pass
+        def encode(self, texts, normalize_embeddings=True): return np.stack([embs[3] for _ in texts])
+
+    monkeypatch.setitem(sys.modules, 'sentence_transformers', types.SimpleNamespace(SentenceTransformer=FakeModel))
+    monkeypatch.setattr(ev, 'variant_paths', lambda v: (tmp_path / 'c_v.json', tmp_path / 'e_v.npz'))
+    monkeypatch.setattr(ev, 'PATH_QUERIES', tmp_path / 'queries.yaml')
+    monkeypatch.setattr(ev, 'DIR_EVAL', tmp_path / 'eval')
+    monkeypatch.setattr(ev, 'PATH_LOG', tmp_path / 'log.md')
+    ev.main('prueba', 'header')
+    out = capsys.readouterr().out
+    assert 'n/a' in out
+    log = (tmp_path / 'log.md').read_text(encoding='utf-8')
+    assert '[header] prueba' in log and '| n/a | n/a | 100% | 100% |' in log
+    assert next((tmp_path / 'eval').glob('*_header.json'))
