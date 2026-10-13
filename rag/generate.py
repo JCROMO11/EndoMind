@@ -1,13 +1,14 @@
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
+import argparse
 
 from loguru import logger
 
 from config import ai_settings
 from rag.llm import LLMOutputError, llm_complete
 from rag.retrieve import Hit, retrieve
-from rag.schemas import EmailDraft, GeneratedEmail, GeneratedParagraph
+from rag.schemas import EmailDraft, GeneratedEmail, GeneratedParagraph, ContextChunk
 
 MAX_CONTEXT_CHUNKS = 10
 BOOK_SHORT = "Greenspan"  # mientras Hit no traiga el libro
@@ -57,6 +58,42 @@ DAY1 = Topic(
         "Qué factores aumentan el riesgo de desarrollarla.",
     ),
 )
+
+DAY7 = Topic(
+    day=7,
+    title="Cómo se mide y se controla la diabetes",
+    chapter=17,
+    queries=(
+        "hemoglobina glucosilada A1c como medida del control glucémico",
+        "automonitoreo de la glucosa capilar",
+        "glucosa plasmática en ayunas y posprandial",
+    ),
+    outline=(
+        "Qué es la hemoglobina glucosilada (A1c) y qué refleja.",
+        "Cómo se mide la glucosa en casa y para qué sirve.",
+        "Por qué es útil hacer controles periódicos con el médico.",
+    ),
+)
+
+DAY30 = Topic(
+    day=30,
+    title="Complicaciones de la diabetes y cómo prevenirlas",
+    chapter=17,
+    queries=(
+        "retinopatía diabética",
+        "nefropatía diabética",
+        "neuropatía diabética y pie diabético",
+        "enfermedad cardiovascular y aterosclerosis en diabetes",
+    ),
+    outline=(
+        "Qué son las complicaciones a largo plazo de la diabetes.",
+        "Cómo puede afectar los ojos, los riñones y los nervios.",
+        "Su relación con el corazón y los vasos sanguíneos.",
+        "Que el buen control y las revisiones periódicas ayudan a prevenirlas.",
+    ),
+)
+
+TOPICS = {t.day: t for t in (DAY1, DAY7, DAY30)}
 
 
 class CitationError(LLMOutputError):
@@ -126,7 +163,14 @@ def enrich(topic: Topic, draft: EmailDraft, hits: list[Hit]) -> GeneratedEmail:
             )
             for p in draft.paragraphs
         ],
-        context_chunks=[h.chunk_index for h in hits],
+        context=[
+            ContextChunk(
+                chunk_index=h.chunk_index, section=h.section, chapter=h.chapter_num,
+                page_start=h.printed_page_start, page_end=h.printed_page_end,
+                content=h.content, score=h.score,
+            )
+            for h in hits
+        ],
         model=ai_settings.llm_model,
         created_at=datetime.now(),
     )
@@ -162,12 +206,31 @@ def save(email: GeneratedEmail, out_dir: Path = OUT_DIR) -> Path:
 
 
 def main() -> None:
-    email = generate_email(DAY1)
-    print("ASUNTO:", email.subject, "\n")
-    for p in email.paragraphs:
-        print(p.text)
-        print(f"   [{p.citation}]  {p.sources}\n")
-    print("guardado en", save(email))
+    parser = argparse.ArgumentParser(description="Genera correos educativos.")
+    parser.add_argument("day", type=int, choices=sorted(TOPICS))
+    parser.add_argument("--context", action="store_true",
+                        help="muestra los chunks recuperados sin llamar al LLM")
+    parser.add_argument("--runs", type=int, default=1)
+    args = parser.parse_args()
+    topic = TOPICS[args.day]
+
+    if args.context:
+        for h in gather_hits(topic):
+            print(f"[#{h.chunk_index}] score={h.score:.3f} p.{h.printed_page_start} "
+                  f"({h.section})\n{h.content}\n")
+        return
+
+    for i in range(1, args.runs + 1):
+        try:
+            email = generate_email(topic)
+        except LLMOutputError as e:
+            logger.error("Corrida {}/{} falló tras la reparación: {}", i, args.runs, e)
+            continue
+        print(f"--- corrida {i}/{args.runs} · ASUNTO: {email.subject}\n")
+        for p in email.paragraphs:
+            print(p.text)
+            print(f"   [{p.citation}]  {p.sources}\n")
+        print("guardado en", save(email), "\n")
 
 
 if __name__ == "__main__":

@@ -26,6 +26,15 @@ class EmailDraft(BaseModel):
         max_length=8,
         description="Cuerpo del correo, en párrafos. Cada uno cita sus fuentes.",
     )
+    
+class ContextChunk(BaseModel):
+    chunk_index: int
+    section: str
+    chapter: int
+    page_start: int
+    page_end: int
+    content: str
+    score: float | None  # None en correos reconstruidos: el score depende de la query, no está en la BD
 
 
 class GeneratedParagraph(BaseModel):
@@ -39,6 +48,6 @@ class GeneratedEmail(BaseModel):
     title: str
     subject: str
     paragraphs: list[GeneratedParagraph]
-    context_chunks: list[int]
+    context: list[ContextChunk]
     model: str
     created_at: datetime
