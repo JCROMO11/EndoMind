@@ -6,7 +6,8 @@ class AISettings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     deepseek_api: SecretStr   
-    llm_model: str            
+    llm_model: str 
+    llm_base_url: str           
 
 
 class DBSettings(BaseSettings):
