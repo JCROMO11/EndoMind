@@ -35,8 +35,9 @@ clasifica cada una:
 - respaldada: algún fragmento CITADO en ese párrafo la dice o la parafrasea fielmente.
 - mal_citada: ningún fragmento citado la respalda, pero otro fragmento del contexto sí.
 - no_respaldada: ningún fragmento del contexto la dice. Incluye: datos de conocimiento \
-general aunque sean correctos; generalizaciones que quitan una condición del fragmento \
-(el fragmento dice "en ciertas poblaciones" y el correo lo afirma en general); afirmar \
+general aunque sean correctos; generalizaciones que omiten una condición que limita el \
+fragmento (población, subgrupo, etapa: el fragmento dice "según la población estudiada" \
+y el correo da la cifra como válida para todos); afirmar \
 como cierto lo que el fragmento declara incierto o poco claro.
 - contradicha: algún fragmento afirma lo opuesto.
 - aclaracion: metáfora o definición de QUÉ ES un término, sin agregar un dato médico. \
