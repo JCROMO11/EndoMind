@@ -31,6 +31,10 @@ class LLMOutputError(Exception):
         self.raw = raw
 
 
+class TruncatedError(LLMOutputError):
+    """La respuesta se cortó por max_tokens: pedir una corrección no sirve, hace falta más espacio."""
+
+
 @lru_cache(maxsize=1)
 def get_client() -> OpenAI:
     return OpenAI(
@@ -105,7 +109,7 @@ def llm_complete(
 
     raw = choice.message.content
     if choice.finish_reason == "length":
-        raise LLMOutputError(f"respuesta cortada por max_tokens={max_tokens}", raw)
+        raise TruncatedError(f"respuesta cortada por max_tokens={max_tokens}", raw)
     if not raw:
         raise LLMOutputError("respuesta vacía", raw)
 
